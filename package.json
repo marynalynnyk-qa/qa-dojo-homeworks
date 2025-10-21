@@ -1,0 +1,14 @@
+{
+  "name": "study-playwright",
+  "version": "1.0.0",
+  "description": "project purpos is to learn how to use js and playwright for auto-testing",
+  "license": "ISC",
+  "author": "Maryna Lynnyk",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {},
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^24.6.2"
+  }
+}
