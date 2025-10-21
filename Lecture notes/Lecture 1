@@ -1,0 +1,28 @@
+import { test, expect } from "@playwright/test";
+
+/**
+1. Використовуйте playwright codegen для генерації початкового коду
+2. Завжди додавайте очікування (assertions) для перевірки результатів
+ */
+
+// jira ticket id,  test rail id - завжди вказуйте посилання на завдання
+test("PS-0001 Order espresso - should be successful", async ({ page }) => {
+  // НАВІГАЦІЯ
+  await page.goto("https://coffee-cart.app/");
+
+  // використовуємо data-test атрибут (найстабільніший спосіб)
+  await page.locator('[data-test="Espresso"]').click();
+  await page.locator('[data-test="checkout"]').click();
+
+  await page.getByRole("textbox", { name: "Name" }).fill("test");
+  await page.getByRole("textbox", { name: "Email" }).fill("test@gm.com");
+
+  await page.getByRole("checkbox", { name: "Promotion checkbox" }).check();
+  await page.getByRole("button", { name: "Submit" }).click();
+
+  // завжди важливо валідувати очікуваний результат
+  // expect() - основний спосіб створення assertions в Playwright
+  await expect(
+    page.getByRole("button", { name: "Thanks for your purchase." })
+  ).toBeVisible();
+});
