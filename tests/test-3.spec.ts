@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { faker } from '@faker-js/faker';
 import { only } from "node:test";
 
 test("click-to-signin-navigates-to-login-page", async ({ page }) => {
@@ -9,8 +10,9 @@ test("click-to-signin-navigates-to-login-page", async ({ page }) => {
 
 test.only("register-new-user", async ({ page }) => {
   await page.goto("https://demo.learnwebdriverio.com/register");
-  await page.getByRole("textbox", { name: "Username" }).fill("Maryna");
-  const randomEmail = `user${Math.floor(Math.random() * 100000)}@example.com`;
+  const randomUsername = faker.internet.username();
+  const randomEmail = faker.internet.email();
+  await page.getByRole("textbox", { name: "Username" }).fill(randomUsername);
   await page.getByRole("textbox", { name: "Email" }).fill(randomEmail);
   await page.getByRole("textbox", { name: "Password" }).fill("Mma12345");
 
